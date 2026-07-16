@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pré-enregistrement — ClearSky AI</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="container">
+    <a href="index.html" class="brand">
+      <svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="1.4" opacity=".5"/><path d="M12 22l7-2 3-8 2 .6-1.6 7.6 6 1.8-.4 1.8-6.4-.6-4 5.4-2-.4.8-6.2-4.4.8z" fill="currentColor"/></svg>
+      <span class="brand-name">ClearSky AI</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html#probleme">Le problème</a></li>
+      <li><a href="index.html#solution">La solution</a></li>
+      <li><a href="index.html#feuille-de-route">Feuille de route</a></li>
+      <li><a href="tableau-bord.html">Tour de contrôle</a></li>
+    </ul>
+    <a href="enregistrement.html" class="btn btn-primary active">Pré-enregistrement</a>
+  </div>
+</nav>
+
+<section class="form-shell">
+  <div class="container" style="max-width:820px;">
+    <div class="form-head">
+      <p class="eyebrow">Pré-enregistrement passager</p>
+      <h1 style="font-size:2.2rem;">Préparez votre passage au contrôle</h1>
+      <p>Quatre étapes rapides. Vous recevrez une référence à présenter à votre arrivée.</p>
+    </div>
+
+    <div class="stepper">
+      <div class="seg"><i></i></div>
+      <div class="seg"><i></i></div>
+      <div class="seg"><i></i></div>
+      <div class="seg"><i></i></div>
+    </div>
+    <div class="step-labels">
+      <span>1. Identité</span>
+      <span>2. Passeport</span>
+      <span>3. Vol</span>
+      <span>4. Récapitulatif</span>
+    </div>
+
+    <form id="clearsky-form" class="form-panel" novalidate>
+
+      <!-- Étape 1 : Identité -->
+      <div class="form-step">
+        <p class="fieldset-title">Étape 1</p>
+        <p class="fieldset-desc">Identité du passager</p>
+        <div class="form-grid">
+          <div class="field full">
+            <label for="nom">Nom complet</label>
+            <input type="text" id="nom" name="nom" placeholder="ex. Naledi Dlamini" required>
+            <p class="error-text">Merci de renseigner votre nom complet.</p>
+          </div>
+          <div class="field">
+            <label for="naissance">Date de naissance</label>
+            <input type="date" id="naissance" name="naissance" required>
+            <p class="error-text">Champ requis.</p>
+          </div>
+          <div class="field">
+            <label for="nationalite">Nationalité</label>
+            <select id="nationalite" name="nationalite" required>
+              <option value="">Sélectionner…</option>
+              <option>Sud-africaine</option>
+              <option>Française</option>
+              <option>Belge</option>
+              <option>Britannique</option>
+              <option>Américaine</option>
+              <option>Nigériane</option>
+              <option>Autre</option>
+            </select>
+            <p class="error-text">Champ requis.</p>
+          </div>
+          <div class="field full">
+            <label for="email">Adresse e-mail</label>
+            <input type="email" id="email" name="email" placeholder="vous@exemple.com" required>
+            <p class="error-text">Adresse e-mail requise.</p>
+          </div>
+        </div>
+        <div class="form-actions">
+          <span></span>
+          <button type="button" class="btn btn-primary" data-next>Continuer</button>
+        </div>
+      </div>
+
+      <!-- Étape 2 : Passeport -->
+      <div class="form-step">
+        <p class="fieldset-title">Étape 2</p>
+        <p class="fieldset-desc">Informations de passeport</p>
+        <div class="form-grid">
+          <div class="field">
+            <label for="passeport">Numéro de passeport</label>
+            <input type="text" id="passeport" name="passeport" placeholder="ex. 19XX34567" required>
+            <p class="error-text">Champ requis.</p>
+          </div>
+          <div class="field">
+            <label for="expiration">Date d'expiration</label>
+            <input type="date" id="expiration" name="expiration" required>
+            <p class="error-text">Champ requis.</p>
+          </div>
+          <div class="field full">
+            <label for="pays_emission">Pays d'émission</label>
+            <input type="text" id="pays_emission" name="pays_emission" placeholder="ex. France" required>
+            <p class="error-text">Champ requis.</p>
+          </div>
+        </div>
+        <div class="form-actions">
+          <button type="button" class="btn btn-ghost" data-prev>Retour</button>
+          <button type="button" class="btn btn-primary" data-next>Continuer</button>
+        </div>
+      </div>
+
+      <!-- Étape 3 : Vol -->
+      <div class="form-step">
+        <p class="fieldset-title">Étape 3</p>
+        <p class="fieldset-desc">Informations de vol</p>
+        <div class="form-grid">
+          <div class="field">
+            <label for="vol">Numéro de vol</label>
+            <input type="text" id="vol" name="vol" placeholder="ex. SA 234" required>
+            <p class="error-text">Champ requis.</p>
+          </div>
+          <div class="field">
+            <label for="date_vol">Date du vol</label>
+            <input type="date" id="date_vol" name="date_vol" required>
+            <p class="error-text">Champ requis.</p>
+          </div>
+          <div class="field">
+            <label for="aeroport">Aéroport d'arrivée</label>
+            <select id="aeroport" name="aeroport" required>
+              <option value="">Sélectionner…</option>
+              <option>OR Tambo — Johannesburg</option>
+              <option>Cape Town International</option>
+              <option>King Shaka — Durban</option>
+            </select>
+            <p class="error-text">Champ requis.</p>
+          </div>
+          <div class="field">
+            <label for="terminal">Terminal</label>
+            <input type="text" id="terminal" name="terminal" placeholder="ex. Terminal A" required>
+            <p class="error-text">Champ requis.</p>
+          </div>
+          <div class="field full">
+            <label>Bagages en soute</label>
+            <div class="radio-group">
+              <label class="radio-card"><input type="radio" name="bagages" value="Aucun" required> Aucun</label>
+              <label class="radio-card"><input type="radio" name="bagages" value="1 bagage"> 1 bagage</label>
+              <label class="radio-card"><input type="radio" name="bagages" value="2 bagages ou plus"> 2 bagages ou plus</label>
+            </div>
+          </div>
+        </div>
+        <div class="form-actions">
+          <button type="button" class="btn btn-ghost" data-prev>Retour</button>
+          <button type="button" class="btn btn-primary" data-next>Continuer</button>
+        </div>
+      </div>
+
+      <!-- Étape 4 : Récapitulatif + consentement -->
+      <div class="form-step">
+        <p class="fieldset-title">Étape 4</p>
+        <p class="fieldset-desc">Récapitulatif et consentement</p>
+
+        <ul class="recap-list" id="recap-list"></ul>
+
+        <div class="consent-box" style="margin-top:28px;">
+          <input type="checkbox" id="consent1" name="consent1" required>
+          <label for="consent1">Je confirme l'exactitude des informations fournies et j'autorise ClearSky AI à les transmettre au point de contrôle des passeports pour accélérer mon passage. <em>(Simulation — aucune donnée réelle n'est transmise.)</em></label>
+        </div>
+        <div class="consent-box">
+          <input type="checkbox" id="consent2" name="consent2" required>
+          <label for="consent2">Je comprends que ce service est une démonstration pédagogique et que ma référence de passage est fictive.</label>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="btn btn-ghost" data-prev>Retour</button>
+          <button type="submit" class="btn btn-gold">Valider mon pré-enregistrement</button>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div>
+      <a href="index.html" class="brand">
+        <svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="1.4" opacity=".5"/><path d="M12 22l7-2 3-8 2 .6-1.6 7.6 6 1.8-.4 1.8-6.4-.6-4 5.4-2-.4.8-6.2-4.4.8z" fill="currentColor"/></svg>
+        <span class="brand-name">ClearSky AI</span>
+      </a>
+      <p class="footer-team" style="margin-top:14px;">Équipe projet — Florence, Frida, Marcella, Solan, Maxime, Haya</p>
+    </div>
+  </div>
+  <div class="container footer-note">
+    <b>Projet fictif à visée pédagogique.</b> Aucune donnée saisie ici n'est réelle, transmise à un tiers ou conservée au-delà de votre navigateur.
+  </div>
+</footer>
+
+<div class="badge-demo">DÉMO — DONNÉES FICTIVES</div>
+<script src="script.js"></script>
+</body>
+</html>

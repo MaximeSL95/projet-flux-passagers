@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Confirmation — ClearSky AI</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="container">
+    <a href="index.html" class="brand">
+      <svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="1.4" opacity=".5"/><path d="M12 22l7-2 3-8 2 .6-1.6 7.6 6 1.8-.4 1.8-6.4-.6-4 5.4-2-.4.8-6.2-4.4.8z" fill="currentColor"/></svg>
+      <span class="brand-name">ClearSky AI</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html#probleme">Le problème</a></li>
+      <li><a href="index.html#solution">La solution</a></li>
+      <li><a href="index.html#feuille-de-route">Feuille de route</a></li>
+      <li><a href="tableau-bord.html">Tour de contrôle</a></li>
+    </ul>
+    <a href="enregistrement.html" class="btn btn-primary">Pré-enregistrement</a>
+  </div>
+</nav>
+
+<section class="confirm-shell">
+  <div class="confirm-check">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M4 12l6 6L20 6"/></svg>
+  </div>
+  <p class="eyebrow" style="justify-content:center;">Pré-enregistrement confirmé</p>
+  <h1 style="text-align:center; font-size:2.1rem; max-width:20ch;">Votre passage est prêt à être accéléré</h1>
+
+  <div class="pass" id="pass-data" style="margin-top:40px;">
+    <div class="pass-main">
+      <div class="route" id="pass-nom">—</div>
+      <div class="sub">Vol <span id="pass-vol">—</span> · Arrivée <span id="pass-aeroport">—</span></div>
+      <div class="pass-grid">
+        <div><span class="k">Date de vol</span><span class="v" id="pass-date">—</span></div>
+        <div><span class="k">Terminal</span><span class="v" id="pass-terminal">—</span></div>
+        <div><span class="k">Statut</span><span class="v">Pré-approuvé</span></div>
+      </div>
+    </div>
+    <div class="pass-stub">
+      <canvas class="qr" id="qr-canvas" width="112" height="112"></canvas>
+      <div class="ref" id="pass-ref">CS-000000</div>
+    </div>
+  </div>
+
+  <div class="confirm-actions">
+    <button class="btn btn-primary" onclick="window.print()">Imprimer ma référence</button>
+    <a href="tableau-bord.html" class="btn btn-gold">Voir la tour de contrôle en direct</a>
+    <a href="index.html" class="btn btn-ghost">Retour à l'accueil</a>
+  </div>
+
+  <p class="confirm-note">Présentez cette référence à votre arrivée à l'aéroport : elle sera reconnue par la borne ClearSky au contrôle des passeports. <b>Démonstration pédagogique — cette référence n'est ni réelle ni valide dans un aéroport.</b></p>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div>
+      <a href="index.html" class="brand">
+        <svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="1.4" opacity=".5"/><path d="M12 22l7-2 3-8 2 .6-1.6 7.6 6 1.8-.4 1.8-6.4-.6-4 5.4-2-.4.8-6.2-4.4.8z" fill="currentColor"/></svg>
+        <span class="brand-name">ClearSky AI</span>
+      </a>
+      <p class="footer-team" style="margin-top:14px;">Équipe projet — Florence, Frida, Marcella, Solan, Maxime, Haya</p>
+    </div>
+  </div>
+  <div class="container footer-note">
+    <b>Projet fictif à visée pédagogique.</b> Aucune donnée saisie ici n'est réelle, transmise à un tiers ou conservée au-delà de votre navigateur.
+  </div>
+</footer>
+
+<div class="badge-demo">DÉMO — DONNÉES FICTIVES</div>
+<script src="script.js"></script>
+</body>
+</html>
