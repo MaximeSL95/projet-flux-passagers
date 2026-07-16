@@ -1,381 +1,151 @@
-:root {
-    --bg-dark: #0f1115;
-    --card-bg: #181b22;
-    --accent-gold: #c5a059; /* Couleur dorée/bronze des slides */
-    --accent-blue: #0ea5e9; /* Bleu technologique */
-    --text-white: #f3f4f6;
-    --text-gray: #9ca3af;
-    --border-color: #2e3541;
-}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClearSky AI - South Africa Border Pre-Clearance</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <span class="logo-icon">✨</span> ClearSky <span class="accent">AI</span>
+        </div>
+        <div class="partner-logos">
+            <span>Dept. of Home Affairs</span> | <span>ACSA Partner</span>
+        </div>
+    </header>
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
-}
+    <main>
+        <section class="hero">
+            <h1>Smarter. Faster. Safer Travel.</h1>
+            <p>Enregistrez vos données biométriques et vos informations de vol avant votre arrivée pour franchir les contrôles frontaliers en moins de 10 secondes grâce à nos couloirs intelligents.</p>
+        </section>
 
-body {
-    background-color: var(--bg-dark);
-    color: var(--text-white);
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
+        <section class="app-container">
+            <!-- Formulaire multi-étapes -->
+            <form id="clearskyForm">
+                
+                <!-- Étape 1 : Vol et Identité -->
+                <div class="form-step" id="step-1">
+                    <h2>1. Détails du Voyage & Identité</h2>
+                    
+                    <div class="input-grid">
+                        <div class="input-field">
+                            <label for="nom">Nom (comme sur le passeport) *</label>
+                            <input type="text" id="nom" required placeholder="MANDELA">
+                        </div>
+                        <div class="input-field">
+                            <label for="prenom">Prénom(s) *</label>
+                            <input type="text" id="prenom" required placeholder="Nelson">
+                        </div>
+                    </div>
 
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.5rem 5%;
-    border-bottom: 1px solid var(--border-color);
-    background-color: rgba(24, 27, 34, 0.8);
-    backdrop-filter: blur(10px);
-}
+                    <div class="input-grid">
+                        <div class="input-field">
+                            <label for="passport">Numéro de Passeport *</label>
+                            <input type="text" id="passport" required placeholder="A01234567">
+                        </div>
+                        <div class="input-field">
+                            <label for="nationalite">Nationalité *</label>
+                            <input type="text" id="nationalite" required placeholder="South African">
+                        </div>
+                    </div>
 
-.logo {
-    font-size: 1.5rem;
-    font-weight: 800;
-    letter-spacing: -0.5px;
-}
+                    <div class="input-grid">
+                        <div class="input-field">
+                            <label for="airport">Aéroport d'arrivée en Afrique du Sud *</label>
+                            <select id="airport" required>
+                                <option value="" disabled selected>Choisir un hub...</option>
+                                <option value="OR Tambo (Johannesburg) - JNB">OR Tambo (Johannesburg) - JNB</option>
+                                <option value="Cape Town International - CPT">Cape Town International - CPT</option>
+                                <option value="King Shaka (Durban) - DUR">King Shaka (Durban) - DUR</option>
+                            </select>
+                        </div>
+                        <div class="input-field">
+                            <label for="flight">Numéro de Vol *</label>
+                            <input type="text" id="flight" required placeholder="SA204">
+                        </div>
+                    </div>
 
-.logo .accent {
-    color: var(--accent-gold);
-}
+                    <button type="button" class="btn" onclick="nextStep(2)">Continuer vers la biométrie ➔</button>
+                </div>
 
-.partner-logos {
-    color: var(--text-gray);
-    font-size: 0.85rem;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-}
+                <!-- Étape 2 : Scan Biométrique (Effet Wow pour l'oral) -->
+                <div class="form-step hidden" id="step-2">
+                    <h2>2. Vérification Biométrique IA</h2>
+                    <p class="step-desc">Notre IA doit analyser votre visage pour le faire correspondre à votre passeport de manière sécurisée.</p>
+                    
+                    <div class="biometric-area">
+                        <div class="webcam-wrapper">
+                            <video id="webcam" autoplay playsinline class="hidden"></video>
+                            <div id="webcam-placeholder" class="webcam-placeholder">
+                                <span>📷 Caméra inactive</span>
+                            </div>
+                            <!-- Scanner visuel animé -->
+                            <div class="scanner-line hidden" id="scanner-line"></div>
+                        </div>
+                        <button type="button" class="btn btn-secondary" id="enable-camera">Activer la caméra biométrique</button>
+                    </div>
 
-main {
-    flex: 1;
-    max-width: 900px;
-    margin: 3rem auto;
-    padding: 0 1.5rem;
-    width: 100%;
-}
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="consent" required>
+                        <label for="consent">Je consens au traitement de mes données biométriques par le Ministère de l'Intérieur Sud-Africain conformément aux lois POPIA.</label>
+                    </div>
 
-.hero {
-    text-align: center;
-    margin-bottom: 3rem;
-}
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-border" onclick="nextStep(1)">⬅ Retour</button>
+                        <button type="submit" class="btn" id="submit-btn">Soumettre l'analyse IA</button>
+                    </div>
+                </div>
+            </form>
 
-.hero h1 {
-    font-size: 2.5rem;
-    font-weight: 800;
-    margin-bottom: 1rem;
-    background: linear-gradient(to right, #ffffff, var(--accent-gold));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
+            <!-- Écran de chargement / Analyse IA -->
+            <div id="loadingScreen" class="hidden text-center">
+                <div class="spinner"></div>
+                <h3>Analyse ClearSky AI en cours...</h3>
+                <p>Analyse des traits faciaux, vérification des listes de contrôle gouvernementales et chiffrement des données.</p>
+            </div>
 
-.hero p {
-    color: var(--text-gray);
-    max-width: 600px;
-    margin: 0 auto;
-    font-size: 1.1rem;
-}
+            <!-- Écran de Succès : Le FastPass final -->
+            <div id="successScreen" class="hidden">
+                <div class="pass-card">
+                    <div class="pass-header">
+                        <div>
+                            <h3>CLEARSKY FASTPASS</h3>
+                            <p class="pass-sub">Biometric Pre-Clearance Approved</p>
+                        </div>
+                        <span class="status-badge">VERIFIED</span>
+                    </div>
+                    <div class="pass-body">
+                        <div class="pass-info">
+                            <p><strong>Passager:</strong> <span id="pass-name">Nelson Mandela</span></p>
+                            <p><strong>Passeport:</strong> <span id="pass-num">A01234567</span></p>
+                            <p><strong>Hub d'arrivée:</strong> <span id="pass-airport">OR Tambo (JNB)</span></p>
+                            <p><strong>Vol:</strong> <span id="pass-flight">SA204</span></p>
+                            <p><strong>Statut Sécurité:</strong> <span class="text-green">✔ Risque Faible (Accès Prioritaire)</span></p>
+                        </div>
+                        <div class="pass-qrcode">
+                            <!-- Génération d'un faux QR Code esthétique -->
+                            <div class="mock-qr">
+                                <div class="qr-square"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pass-footer">
+                        <p>Présentez ce QR Code aux portiques ClearSky SmartGate à votre arrivée.</p>
+                    </div>
+                </div>
+                <button class="btn btn-secondary" onclick="resetForm()">Enregistrer un autre passager</button>
+            </div>
 
-.app-container {
-    background-color: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 16px;
-    padding: 2.5rem;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-}
+        </section>
+    </main>
 
-h2 {
-    font-size: 1.5rem;
-    margin-bottom: 1.5rem;
-    color: var(--text-white);
-}
+    <footer>
+        <p>Projet ClearSky AI par : Florence, Frida, Marcella, Solan, Maxime, Haya. © 2026</p>
+    </footer>
 
-.step-desc {
-    color: var(--text-gray);
-    margin-bottom: 2rem;
-    font-size: 0.95rem;
-}
-
-.input-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-    margin-bottom: 1.5rem;
-}
-
-.input-field {
-    display: flex;
-    flex-direction: column;
-}
-
-label {
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: var(--text-gray);
-    margin-bottom: 0.5rem;
-}
-
-input, select {
-    background-color: #0f1115;
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    padding: 0.85rem 1rem;
-    color: white;
-    font-size: 1rem;
-    transition: all 0.3s;
-}
-
-input:focus, select:focus {
-    border-color: var(--accent-gold);
-    outline: none;
-    box-shadow: 0 0 0 2px rgba(197, 160, 89, 0.2);
-}
-
-.biometric-area {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 2rem 0;
-    gap: 1rem;
-}
-
-.webcam-wrapper {
-    position: relative;
-    width: 320px;
-    height: 240px;
-    background-color: #0a0c0f;
-    border: 2px solid var(--border-color);
-    border-radius: 12px;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-#webcam {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transform: scaleX(-1); /* Effet miroir naturel */
-}
-
-.webcam-placeholder {
-    color: var(--text-gray);
-    font-size: 0.9rem;
-}
-
-/* Ligne de scan laser animée */
-.scanner-line {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 4px;
-    background: linear-gradient(180deg, rgba(14, 165, 233, 0), var(--accent-blue));
-    box-shadow: 0 0 8px var(--accent-blue);
-    animation: scan 2s infinite ease-in-out;
-}
-
-@keyframes scan {
-    0%, 100% { top: 0%; }
-    50% { top: 100%; }
-}
-
-.checkbox-group {
-    display: flex;
-    gap: 0.75rem;
-    align-items: flex-start;
-    margin-top: 1.5rem;
-    font-size: 0.85rem;
-    color: var(--text-gray);
-}
-
-.checkbox-group input {
-    margin-top: 3px;
-}
-
-.btn {
-    background-color: var(--accent-gold);
-    color: #000;
-    font-weight: 700;
-    border: none;
-    padding: 1rem 2rem;
-    font-size: 1rem;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s;
-    width: 100%;
-    text-align: center;
-}
-
-.btn:hover {
-    background-color: #dfb76c;
-    box-shadow: 0 0 15px rgba(197, 160, 89, 0.4);
-}
-
-.btn-secondary {
-    background-color: #2e3541;
-    color: white;
-}
-
-.btn-secondary:hover {
-    background-color: #3f4859;
-}
-
-.btn-border {
-    background: transparent;
-    border: 1px solid var(--border-color);
-    color: white;
-}
-
-.btn-group {
-    display: flex;
-    gap: 1rem;
-    margin-top: 2rem;
-}
-
-.hidden {
-    display: none !important;
-}
-
-/* Spinner de chargement */
-.spinner {
-    width: 50px;
-    height: 50px;
-    border: 5px solid rgba(197, 160, 89, 0.1);
-    border-top: 5px solid var(--accent-gold);
-    border-radius: 50%;
-    margin: 2rem auto;
-    animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-.text-center {
-    text-align: center;
-}
-
-/* Style de la carte d'embarquement finale (FastPass) */
-.pass-card {
-    background: linear-gradient(135deg, #1f242e, #11141a);
-    border: 1px solid var(--accent-gold);
-    border-radius: 12px;
-    padding: 1.5rem;
-    margin-bottom: 2rem;
-    position: relative;
-    overflow: hidden;
-}
-
-.pass-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 4px;
-    height: 100%;
-    background-color: var(--accent-gold);
-}
-
-.pass-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px dashed var(--border-color);
-    padding-bottom: 1rem;
-    margin-bottom: 1rem;
-}
-
-.pass-sub {
-    font-size: 0.8rem;
-    color: var(--accent-gold);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.status-badge {
-    background-color: rgba(16, 185, 129, 0.2);
-    color: #10b981;
-    border: 1px solid #10b981;
-    padding: 0.25rem 0.75rem;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 700;
-}
-
-.pass-body {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 1rem;
-}
-
-.pass-info p {
-    font-size: 0.9rem;
-    margin-bottom: 0.5rem;
-    color: var(--text-gray);
-}
-
-.pass-info strong {
-    color: white;
-}
-
-.text-green {
-    color: #10b981;
-    font-weight: bold;
-}
-
-.pass-qrcode {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* Faux QR Code dessiné en CSS high-tech */
-.mock-qr {
-    width: 90px;
-    height: 90px;
-    background-color: white;
-    padding: 5px;
-    border-radius: 4px;
-    position: relative;
-}
-
-.qr-square {
-    width: 100%;
-    height: 100%;
-    background-image: 
-        linear-gradient(45deg, #000 25%, transparent 25%), 
-        linear-gradient(-45deg, #000 25%, transparent 25%), 
-        linear-gradient(45deg, transparent 75%, #000 75%), 
-        linear-gradient(-45deg, transparent 75%, #000 75%);
-    background-size: 10px 10px;
-}
-
-.pass-footer {
-    border-top: 1px dashed var(--border-color);
-    padding-top: 1rem;
-    margin-top: 1rem;
-    font-size: 0.8rem;
-    color: var(--text-gray);
-    text-align: center;
-}
-
-footer {
-    text-align: center;
-    padding: 2rem;
-    font-size: 0.85rem;
-    color: var(--text-gray);
-    border-top: 1px solid var(--border-color);
-    margin-top: auto;
-}
-
-@media (max-width: 650px) {
-    .input-grid, .pass-body {
-        grid-template-columns: 1fr;
-    }
-}
+    <script src="script.js"></script>
+</body>
+</html>
