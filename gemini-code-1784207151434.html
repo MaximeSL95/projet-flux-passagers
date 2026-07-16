@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FastTrack - Enregistrement Passager</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">✈️ FastTrack Portal</div>
+        <nav>
+            <ul>
+                <li><a href="#">Accueil</a></li>
+                <li><a href="#">Assistance</a></li>
+                <li><a href="#">FR / EN</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="intro">
+            <h1>Gagnez du temps dans les files d'attente</h1>
+            <p>Veuillez remplir ce formulaire de pré-enregistrement pour obtenir votre QR Code d'accès prioritaire aux contrôles de sécurité.</p>
+        </section>
+
+        <section class="form-container">
+            <form id="passengerForm">
+                <h3>Informations du Passager</h3>
+                <div class="input-group">
+                    <div class="input-field">
+                        <label for="nom">Nom de famille *</label>
+                        <input type="text" id="nom" name="nom" required placeholder="Ex: Dupont">
+                    </div>
+                    <div class="input-field">
+                        <label for="prenom">Prénom *</label>
+                        <input type="text" id="prenom" name="prenom" required placeholder="Ex: Jean">
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <div class="input-field">
+                        <label for="passeport">Numéro de Passeport / CNI *</label>
+                        <input type="text" id="passeport" name="passeport" required placeholder="Ex: 12AB34567">
+                    </div>
+                    <div class="input-field">
+                        <label for="nationalite">Nationalité *</label>
+                        <input type="text" id="nationalite" name="nationalite" required placeholder="Ex: Française">
+                    </div>
+                </div>
+
+                <h3>Détails du Voyage</h3>
+                <div class="input-group">
+                    <div class="input-field">
+                        <label for="numVol">Numéro de Vol / Trajet *</label>
+                        <input type="text" id="numVol" name="numVol" required placeholder="Ex: AF1234">
+                    </div>
+                    <div class="input-field">
+                        <label for="dateDepart">Date de départ *</label>
+                        <input type="date" id="dateDepart" name="dateDepart" required>
+                    </div>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="bagage" name="bagage">
+                    <label for="bagage">Je déclare avoir des bagages en soute à enregistrer.</label>
+                </div>
+                
+                <div class="checkbox-group">
+                    <input type="checkbox" id="cgv" name="cgv" required>
+                    <label for="cgv">J'accepte les conditions générales de traitement des données *</label>
+                </div>
+
+                <button type="submit" class="submit-btn">Générer mon accès prioritaire</button>
+            </form>
+            
+            <div id="successMessage" class="hidden">
+                <h3>✅ Enregistrement Confirmé !</h3>
+                <p>Vos informations ont bien été transmises. Un QR code vous a été envoyé par email pour passer les files d'attente rapidement.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 FastTrack Portal - Projet Fictif. Tous droits réservés.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
